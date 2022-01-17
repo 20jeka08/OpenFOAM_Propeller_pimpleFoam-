@@ -30,7 +30,8 @@ boundaryField
 
     Wall
     {
-        type            noSlip;
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
     }
 
 
