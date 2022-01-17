@@ -1,0 +1,75 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+boundary
+{
+    Outlet_in 
+    {
+        type            cyclicAMI;
+        matchTolerance  0.00001;
+        transform       noOrdering;
+        neighbourPatch  Inlet_imp;
+
+    }
+
+    Inlet_imp 
+    {
+        type            cyclicAMI;
+        matchTolerance  0.00001;
+        transform       noOrdering;
+        neighbourPatch  Outlet_in;
+    }
+
+    Outlet_imp 
+    {
+        type            cyclicAMI;
+        matchTolerance  0.00001;
+        transform       noOrdering;
+        neighbourPatch  Inlet_vanes;
+    }
+
+    Inlet_vanes 
+    {
+        type            cyclicAMI;
+        matchTolerance  0.00001;
+        transform       noOrdering;
+        neighbourPatch  Outlet_imp;
+    }
+
+    Wall_vanes
+    {
+        type            wall;
+    }
+
+    Shroud_imp
+    {
+        type            wall;
+    }
+
+    Wall_imp
+    {
+        type            wall;
+    }
+
+    Wall_in
+    {
+        type            wall;
+    }
+
+}
+
+
+// ************************************************************************* //
